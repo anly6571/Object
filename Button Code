@@ -1,14 +1,17 @@
-
 /*
 
 */
 //decalre variables 
 int btnPin = 2;
 int ledPin = 8;
+int swtchPin = 4;
+int led2Pin = 9;
 void setup() {
     //declare inputs and outputs
     pinMode(btnPin, INPUT);
     pinMode(ledPin, OUTPUT);
+    pinMode(swtchPin, INPUT);
+    pinMode(led2Pin, OUTPUT);
     
     //initialize serial comm
     Serial.begin(9600);
@@ -20,6 +23,13 @@ void loop() {
   //if btn=1, turn light on, if btn=0, turn light off 
   if (digitalRead(btnPin)==1){
     digitalWrite(ledPin, HIGH);
+  }else{
+    digitalWrite(ledPin, LOW);
+  }
+  
+  //if swtch=1, turn light on, if swich=0, turn light off 
+  if (digitalRead(swtchPin)==1){
+    digitalWrite(led2Pin, HIGH);
   }else{
     digitalWrite(ledPin, LOW);
   }
