@@ -1,0 +1,29 @@
+// Adafruit NeoPixel - Version: Latest 
+#include <Adafruit_NeoPixel.h>
+#ifdef __AVR__
+#include <avr/power.h>
+#endif
+
+//set signal pin
+#define PIN 12
+//create instance of library, call it strip
+//first parameter is number of lights
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(5,PIN,NEO_GRB + NEO_KHZ800);
+
+
+void setup() {
+    //start the strip
+    strip.begin();
+    //initialize all pixels to "off"
+    strip.show();
+}
+
+void loop() {
+    //iterate through array of neopixels to set color and show
+    for(uint16_t i=0; i<strip.numPixels();i++)
+    //always set color first, then show color
+    strip.setPixelColor(i,62, 145, 131); //pixels, then 3 values for color
+    strip.show();
+    delay(600);
+}
