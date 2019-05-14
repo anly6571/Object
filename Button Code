@@ -1,0 +1,26 @@
+
+/*
+
+*/
+//decalre variables 
+int btnPin = 2;
+int ledPin = 8;
+void setup() {
+    //declare inputs and outputs
+    pinMode(btnPin, INPUT);
+    pinMode(ledPin, OUTPUT);
+    
+    //initialize serial comm
+    Serial.begin(9600);
+}
+void loop() {
+  //put main code here, to run repeatedly 
+  //Inputs=read, output=write
+  Serial.println(digitalRead(btnPin)); 
+  //if btn=1, turn light on, if btn=0, turn light off 
+  if (digitalRead(btnPin)==1){
+    digitalWrite(ledPin, HIGH);
+  }else{
+    digitalWrite(ledPin, LOW);
+  }
+}
