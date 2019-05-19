@@ -1,0 +1,62 @@
+// Adafruit NeoPixel - Version: Latest 
+#include <Adafruit_NeoPixel.h>
+#ifdef __AVR__
+#include <avr/power.h>
+#endif
+
+#define PIN 12
+
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(4,PIN,NEO_GRB + NEO_KHZ800);
+
+int redPot = 0;
+int val = 0;
+int red = 0;
+int green = 0;
+int redVal = 0;
+int blueVal = 0;
+int blue = 0;
+int greenVal = 0;
+int greenPot = 1; 
+int dimmerVal = 0;
+int slider = 3;
+int dimmer = 0;
+int bluePot = 2;
+int brightness = 0;
+
+void setup() {
+  strip.begin();
+  strip.show();
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  redVal = analogRead(redPot);
+  red = map(redVal,1,1023,0,255);
+
+  blueVal = analogRead(bluePot);
+  blue = map(blueVal,1,1023,0,255);
+  
+
+  greenVal = analogRead(greenPot);
+  green = map(greenVal,1,1023,0,255);
+  
+  dimmerVal = analogRead(slider);
+  dimmer = map(dimmerVal,1,1012,0,100);
+  
+  brightness = dimmer/255;
+  
+  
+   for(uint16_t i=0; i<strip.numPixels();i++)
+   {
+    strip.setBrightness(dimmer); //to set brightness
+    strip.setPixelColor(i,red,green,blue);  // to set color
+    strip.show();
+   }
+
+    Serial.println(analogRead(slider));
+   
+    
+
+}
