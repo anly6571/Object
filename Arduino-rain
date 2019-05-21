@@ -1,0 +1,46 @@
+// Adafruit NeoPixel - Version: Latest 
+// Adafruit NeoPixel - Version: Latest 
+#include <Adafruit_NeoPixel.h>
+#ifdef __AVR__
+#include <avr/power.h>
+#endif
+
+//set signal pin
+#define PIN 7
+//create instance of library, call it strip
+//first parameter is number of lights
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(5,PIN,NEO_GRB + NEO_KHZ800);
+int button;
+void setup() {
+   Serial.begin(9600); //establish serial connection & rate  
+    //start the strip
+    strip.begin();
+    //initialize all pixels to "off"
+    strip.show();
+    pinMode (button,INPUT);
+}
+
+void loop() {
+    //read 2 analog sensor values, and send the values serially
+    int pot1 = analogRead(A0);
+    int pot2 = analogRead(A1);
+    //format a message to send to P5
+    Serial.print(pot1);
+    Serial.print(",");
+    Serial.println(pot2);
+    //Serial.print(",");
+
+     delay(1);
+    
+    //recieve values from p5
+    //if data is avalible in the serial port
+    if(Serial.available()>0){
+      int inByte = Serial.read(); //read it 
+    
+    //sets brightness based on x postiton 
+    for(uint16_t i=0; i<strip.numPixels();i++)
+    strip.setPixelColor(i,0, 0, inByte); //pixels, then 3 values for color
+    strip.show();
+    }
+}
