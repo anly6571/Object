@@ -1,0 +1,38 @@
+#include <Servo.h>
+
+Servo servoOne;
+Servo servoTwo;
+Servo servoThree;// create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+//int pos = 0;    // variable to store the servo position
+
+void setup() {
+  servoOne.attach(11);  // attaches the servo on pin 9 to the servo object
+  servoTwo.attach(10);
+  servoThree.attach(9);
+  servoOne.write(160);
+  servoTwo.write(160);
+  servoThree.write(160);
+  
+}
+
+void loop() {
+  // servoOne.write(0);
+  // delay(2000);
+  // servoTwo.write(0);
+  // delay(2000);
+  // servoThree.write(0);
+  delay(6000);
+  servoOne.write(10);
+  delay(4000);
+  servoTwo.write(10);
+  delay(4000);
+  servoThree.write(10);
+  delay(4000);
+  servoOne.write(150);
+  //delay(2000);
+  servoTwo.write(150);
+  //delay(2000);
+  servoThree.write(150);
+  delay(2000);
